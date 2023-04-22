@@ -15,65 +15,65 @@
     <script src="https://code.jquery.com/qunit/qunit-2.19.4.js"></script>
     <script>
 
-        QUnit.module('MyString', () => {
-                QUnit.test('remove', assert => {
-                    assert.strictEqual(new MyString('qwerty').remove(0), 'werty');
-                    assert.strictEqual(new MyString('qwerty').remove(2), 'qwrty');
-                    assert.strictEqual(new MyString('qwerty').remove(10), 'qwerty');
-                    assert.strictEqual(new MyString('qwerty').remove(-4), 'qwerty');
-                });
+    QUnit.module('MyString', () => {
+        QUnit.test('remove', assert => {
+            assert.strictEqual(new MyString('qwerty').remove(0), 'werty');
+            assert.strictEqual(new MyString('qwerty').remove(2), 'qwrty');
+            assert.strictEqual(new MyString('qwerty').remove(10), 'qwerty');
+            assert.strictEqual(new MyString('qwerty').remove(-4), 'qwerty');
+        });
 
-                QUnit.test('insert', assert => {
-                    assert.strictEqual(new MyString('qwerty').insert(0, 'X'), 'Xwerty');
-                    assert.strictEqual(new MyString('qwerty').insert(2, 'X'), 'qwXrty');
-                    assert.strictEqual(new MyString('qwerty').insert(10, 'X'), 'qwertyX');
-                    assert.strictEqual(new MyString('qwerty').insert(-4, 'X'), 'Xqwerty');
-                });
+        QUnit.test('insert', assert => {
+            assert.strictEqual(new MyString('qwerty').insert(0, 'X'), 'Xwerty');
+            assert.strictEqual(new MyString('qwerty').insert(2, 'X'), 'qwXrty');
+            assert.strictEqual(new MyString('qwerty').insert(10, 'X'), 'qwertyX');
+            assert.strictEqual(new MyString('qwerty').insert(-4, 'X'), 'Xqwerty');
+        });
 
-                QUnit.test('trimSign', assert => {
-                    assert.strictEqual(new MyString('qwerty').trimSign(), 'qwerty');
-                    assert.strictEqual(new MyString('qweeeerty').trimSign(), 'qwerty');
-                    assert.strictEqual(new MyString('qweeertttty').trimSign(), 'qwerty');
-                    assert.strictEqual(new MyString('qwe....rty').trimSign(), 'qwe.rty');
-                });
+        QUnit.test('trimSign', assert => {
+            assert.strictEqual(new MyString('qwerty').trimSign(), 'qwerty');
+            assert.strictEqual(new MyString('qweeeerty').trimSign(), 'qwerty');
+            assert.strictEqual(new MyString('qweeertttty').trimSign(), 'qwerty');
+            assert.strictEqual(new MyString('qwe....rty').trimSign(), 'qwe.rty');
+        });
 
-                QUnit.test('toggle', assert => {
-                    assert.strictEqual(new MyString('qwerty').toggle(), 'QWERTY');
-                    assert.strictEqual(new MyString('QWERTY').toggle(), 'qwerty');
-                    assert.strictEqual(new MyString('qweRTY').toggle(), 'QWErty');
-                });
+        QUnit.test('toggle', assert => {
+            assert.strictEqual(new MyString('qwerty').toggle(), 'QWERTY');
+            assert.strictEqual(new MyString('QWERTY').toggle(), 'qwerty');
+            assert.strictEqual(new MyString('qweRTY').toggle(), 'QWErty');
+        });
 
-                QUnit.test('counter', assert => {
-                    assert.strictEqual(new MyString('qwerty').counter('e'), 1);
-                    assert.strictEqual(new MyString('apple').counter('p'), 2);
-                    assert.strictEqual(new MyString('avokado').counter('a'), 2);
-                });
-            });
+        QUnit.test('counter', assert => {
+            assert.strictEqual(new MyString('qwerty').counter('e'), 1);
+            assert.strictEqual(new MyString('apple').counter('p'), 2);
+            assert.strictEqual(new MyString('avokado').counter('a'), 2);
+        });
+    });
 
-        QUnit.module('MyDate', () => {
-                QUnit.test('showDate', assert => {
-                    assert.strictEqual(new MyDate(20, 1, 1990).showDate(), 'Двадцатое Января');
-                    assert.strictEqual(new MyDate(21, 1, 1990).showDate(), 'Двадцать Первое Января');
-                });
+    QUnit.module('MyDate', () => {
+        QUnit.test('showDate', assert => {
+            assert.strictEqual(new MyDate(20, 1, 1990).showDate(), 'Двадцатое Января');
+            assert.strictEqual(new MyDate(21, 1, 1990).showDate(), 'Двадцать Первое Января');
+        });
 
-                QUnit.test('isFuture', assert => {
-                    assert.ok(new MyDate(20, 5, 2056).isFuture());
-                    assert.notOk(new MyDate(20, 6, 1990).isFuture());
-                });
+        QUnit.test('isFuture', function (assert) {
+            assert.strictEqual(new MyDate(20, 5, 2056).isFuture(), true);
+            assert.strictEqual(new MyDate(20, 6, 1990).isFuture(), false);
+        });
 
-                QUnit.test('isLeapYear', assert => {
-                    assert.notOk(new MyDate(20, 6, 1990).isLeapYear());
-                    assert.ok(new MyDate(20, 6, 2020).isLeapYear());
-                });
+        QUnit.test('isLeapYear', function (assert) {
+            assert.strictEqual(new MyDate(20, 6, 1990).isLeapYear(), false);
+            assert.strictEqual(new MyDate(20, 6, 2020).isLeapYear(), true);
+        });
 
-                QUnit.test('nextDay', assert => {
-                    assert.strictEqual(new MyDate(20, 6, 2020).nextDay(), '21/6/2020');
-                    assert.strictEqual(new MyDate(31, 1, 2020).nextDay(), '1/2/2020');
-                    assert.strictEqual(new MyDate(28, 2, 2020).nextDay(), '29/2/2020');
-                    assert.strictEqual(new MyDate(28, 2, 2019).nextDay(), '1/3/2019'); //assert.strictEqual(new MyDate(28, 6, 2019).nextDay(), '1/3/2020');
-                    assert.strictEqual(new MyDate(31, 12, 2020).nextDay(), '1/1/2021');
-                });
-            });
+        QUnit.test('nextDay', assert => {
+            assert.strictEqual(new MyDate(20, 6, 2020).nextDay(), '21/6/2020');
+            assert.strictEqual(new MyDate(31, 1, 2020).nextDay(), '1/2/2020');
+            assert.strictEqual(new MyDate(28, 2, 2020).nextDay(), '29/2/2020');
+            assert.strictEqual(new MyDate(28, 2, 2019).nextDay(), '1/3/2019'); //assert.strictEqual(new MyDate(28, 6, 2019).nextDay(), '1/3/2020');
+            assert.strictEqual(new MyDate(31, 12, 2020).nextDay(), '1/1/2021');
+        });
+    });
     </script>
 </body>
 </html>
